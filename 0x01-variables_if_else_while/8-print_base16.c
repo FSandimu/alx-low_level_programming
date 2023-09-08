@@ -6,14 +6,14 @@
 int main(void)
 {
 	int a = 48;
-	int b = 65;
+	int b = 97;
 
 	while (a <= 57)
 	{
 		putchar(a);
 		a++;
 	}
-	while (b <= 70)
+	while (b <= 102)
 	{
 		putchar(b);
 		b++;
