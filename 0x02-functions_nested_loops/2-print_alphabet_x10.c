@@ -5,12 +5,12 @@
  */
 void print_alphabet_x10(void)
 {
-	int c;
+	char c;
 	int i = 0;
 
 	while (1 <= 9)
 	{
-		for (c = 97; c <= 122; c++)
+		for (c = 'a'; c <= 'z'; c++)
 		{
 			_putchar(c);
 		}
