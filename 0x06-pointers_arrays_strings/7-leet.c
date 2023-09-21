@@ -23,7 +23,7 @@ char *leet(char *s)
 		{
 			if (lLetters[lc] == s[sl])
 			{
-				s[sl] == lNums[lc];
+				s[sl] = lNums[lc];
 			}
 			lc++;
 		}
