@@ -1,43 +1,48 @@
 #include "main.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <font1.h>
-#include <stdlib.h>
 
 /**
- * read_textfile - reads a text file and prints it
+ * read_textfile - a function that reads a text file
+ * and prints it to the correct output
  * @filename: the file name
  * @letters: number of letters
- * Return: actual number of letters
- */
+ * Return: number of letters
+ **/
+
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file_d;
-	ssize_t lr, lw;
+	int f;
+
+	ssize_t _read, _write;
+
 	char *buffer;
 
-	if (filename == NULL)
-		return (0);
-	file_d = open(filename, O_RDONLY);
-	if (file_d == -1)
-		return (0);
-	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
+	if (!filename)
 	{
-		close(file_d);
 		return (0);
 	}
-	lr = read(file_d, buffer, letters);
-	close(file_d);
-	if (lr == -1)
+
+	f = open(filename, O_RDONLY);
+	if (f == -1)
+		return (0);
+
+	buffer = malloc(sizeof(char) * letters);
+	if (f == 0)
+		return (0);
+
+	_read = read(f, buffer, letters);
+	if (_read == -1)
 	{
 		free(buffer);
+		close(f);
 		return (0);
 	}
-	lw = write(STDOUT_FILENO, buffer, lr);
-	free(buffer);
-	if (lr != lw)
+	_write = write(STDOUT_FILENO, buffer, _read);
+	if (_write == -1)
+	{
+		free(buffer);
+		close(f);
 		return (0);
-	return (lw);
+	}
+	close(f);
+	return (_read);
 }
